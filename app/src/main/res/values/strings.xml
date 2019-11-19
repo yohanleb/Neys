@@ -1,4 +1,5 @@
 <resources>
     <string name="app_name">Neys</string>
     <string name="empty_list_title">An error occurred when retrieving articles…</string>
+    <string name="article_title">Article</string>
 </resources>
