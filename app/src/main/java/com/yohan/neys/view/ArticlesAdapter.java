@@ -1,6 +1,7 @@
 package com.yohan.neys.view;
 
 import android.content.Context;
+import android.content.Intent;
 import android.support.annotation.NonNull;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
@@ -22,25 +23,17 @@ public class ArticlesAdapter extends
     public class ViewHolder extends RecyclerView.ViewHolder {
         private ImageView articleImageView;
         private TextView articleTitleTextView;
-        private ImageView nutritionGradeImageView;
-        private TextView nutritionGradeTextView;
 
         public ViewHolder(View itemView) {
             super(itemView);
-
-            /*
-
             itemView.setOnClickListener(v -> {
                 Intent newIntent = new Intent(v.getContext(), ArticleDetailActivity.class);
                 newIntent.putExtra("Article", articlesList.get(getAdapterPosition()));
                 v.getContext().startActivity(newIntent);
             });
-             */
 
             articleImageView = itemView.findViewById(R.id.article_image);
             articleTitleTextView = itemView.findViewById(R.id.article_title);
-            //nutritionGradeImageView = itemView.findViewById(R.id.nutrition_grade_color);
-            //nutritionGradeTextView = itemView.findViewById(R.id.nutrition_grade);
         }
     }
 
@@ -70,10 +63,6 @@ public class ArticlesAdapter extends
 
         TextView textView = viewHolder.articleTitleTextView;
         textView.setText(article.getTitle());
-        //ImageView imageViewColor = viewHolder.nutritionGradeImageView;
-        //imageViewColor.setColorFilter(Color.parseColor(article.getNutritionGradeColor()));
-        //TextView textView2 = viewHolder.nutritionGradeTextView;
-        //textView2.setText(article.getNutritionGradeText());
     }
 
     @Override
