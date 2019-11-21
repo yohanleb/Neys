@@ -1,5 +1,6 @@
 package com.yohan.neys.data;
 
+import android.support.v4.app.Fragment;
 import android.text.TextUtils;
 import android.widget.Toast;
 import com.google.gson.Gson;
@@ -16,12 +17,12 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class APIController implements Callback<APIResponse> {
-    private MainActivity view;
+    private Fragment view;
     private NewsAPI newsAPI;
     private SharedPreferences sharedPreferences;
     private List<Article> articles;
 
-    public APIController(MainActivity view, NewsAPI newsAPI, SharedPreferences sharedPreferences) {
+    public APIController(Fragment view, NewsAPI newsAPI, SharedPreferences sharedPreferences) {
         this.view = view;
         this.newsAPI = newsAPI;
         this.sharedPreferences = sharedPreferences;
@@ -42,15 +43,15 @@ public class APIController implements Callback<APIResponse> {
                 articles = apiResponse.getArticles();
                 System.out.println(articles);
                 storeData(articles);
-                view.refreshList(articles, true);
+                //view.refreshList(articles, true);
             } else {
                 System.out.println("API Call Unsuccessful");
-                Toast.makeText(view, "Sorry, no articles found...", Toast.LENGTH_LONG).show();
+                Toast.makeText(view.getActivity(), "Sorry, no articles found...", Toast.LENGTH_LONG).show();
             }
         } else {
             System.out.println("API Call Unsuccessful");
             List<Article> articles = getDataFromCache();
-            view.refreshList(articles, false);
+            //view.refreshList(articles, false);
         }
     }
 
