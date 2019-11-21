@@ -2,4 +2,8 @@
     <string name="app_name">Neys</string>
     <string name="empty_list_title">An error occurred when retrieving articles…</string>
     <string name="article_title">Article</string>
+
+    <string name="bottom_navigation_menu_latest">Latest</string>
+    <string name="bottom_navigation_menu_search">Search</string>
+    <string name="bottom_navigation_menu_liked">Liked</string>
 </resources>
