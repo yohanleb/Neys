@@ -1,15 +1,9 @@
 package com.yohan.neys.model;
 
-import android.os.Build;
-import android.support.annotation.RequiresApi;
-
 import java.io.Serializable;
-import java.text.ParseException;
-import java.text.SimpleDateFormat;
 import java.time.Instant;
 import java.time.ZoneId;
 import java.time.format.DateTimeFormatter;
-import java.time.format.FormatStyle;
 import java.util.Locale;
 
 public class Article implements Serializable {
@@ -50,15 +44,17 @@ public class Article implements Serializable {
         return publishedAt;
     }
 
-    @RequiresApi(api = Build.VERSION_CODES.O)
     public String getPublishedAtFormatted() {
-        Instant instant = Instant.parse(publishedAt);
-        DateTimeFormatter formatter =
-                DateTimeFormatter.ofPattern( "'Le' E dd/MM 'à' HH:mm" )
-                        .withLocale( Locale.FRANCE )
-                        .withZone(ZoneId.systemDefault());
-
-        return formatter.format(instant);
+        if (android.os.Build.VERSION.SDK_INT >= android.os.Build.VERSION_CODES.O) {
+            Instant instant = Instant.parse(publishedAt);
+            DateTimeFormatter formatter =
+                    DateTimeFormatter.ofPattern( "'Le' E dd/MM 'à' HH:mm" )
+                            .withLocale( Locale.FRANCE )
+                            .withZone(ZoneId.systemDefault());
+            return formatter.format(instant);
+        } else {
+            return publishedAt;
+        }
     }
 
     public String getContent() {

@@ -11,14 +11,14 @@ import android.view.ViewGroup;
 import android.widget.TextView;
 import com.yohan.neys.Injection;
 import com.yohan.neys.R;
-import com.yohan.neys.data.APIController;
+import com.yohan.neys.controller.LatestNewsController;
 import com.yohan.neys.model.Article;
 
 import java.util.ArrayList;
 import java.util.List;
 
 public class LatestNewsFragment extends Fragment {
-    private APIController apiController;
+    private LatestNewsController latestNewsController;
     private RecyclerView rvArticles;
 
     @Override
@@ -30,13 +30,11 @@ public class LatestNewsFragment extends Fragment {
         rvArticles = view.findViewById(R.id.recycler_view);
         TextView emptyListText = view.findViewById(R.id.empty_list_title);
 
-        apiController = new APIController(this, Injection.getRestApiInstance(), this.getActivity().getSharedPreferences("user_prefs", Context.MODE_PRIVATE));
+        latestNewsController = new LatestNewsController(this, Injection.getRestApiInstance(), this.getActivity().getSharedPreferences("user_prefs", Context.MODE_PRIVATE));
 
-        apiController.start();
+        latestNewsController.startLoadTopHeadlines();
 
-        ArrayList<Article> articles = apiController.getDataFromCache();
-        System.out.println("LOG ARTICLES");
-        System.out.println(articles);
+        ArrayList<Article> articles = latestNewsController.getDataFromCache();
 
         if (articles.isEmpty()) {
             rvArticles.setVisibility(View.INVISIBLE);

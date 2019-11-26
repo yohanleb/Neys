@@ -1,4 +1,4 @@
-package com.yohan.neys.data;
+package com.yohan.neys.controller;
 
 import com.yohan.neys.model.APIResponse;
 
@@ -11,7 +11,10 @@ public interface NewsAPI {
     Call<APIResponse> loadTopHeadlines(@Query("apiKey") String apiKey, @Query("country") String country);
 
     @GET("everything")
-    Call<APIResponse> loadEverything(@Query("apiKey") String apiKey);
+    Call<APIResponse> loadEverything(@Query("apiKey") String apiKey,
+                                     @Query("language") String language,
+                                     @Query("sortBy") String sortBy,
+                                     @Query("q") String q);
 
     @GET("sources")
     Call<APIResponse> loadSources(@Query("apiKey") String apiKey);

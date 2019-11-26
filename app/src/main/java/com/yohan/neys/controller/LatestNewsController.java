@@ -1,14 +1,14 @@
-package com.yohan.neys.data;
+package com.yohan.neys.controller;
 
-import android.support.v4.app.Fragment;
 import android.text.TextUtils;
 import android.widget.Toast;
 import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;
+import com.yohan.neys.Injection;
 import com.yohan.neys.model.APIResponse;
 import android.content.SharedPreferences;
 import com.yohan.neys.model.Article;
-import com.yohan.neys.view.MainActivity;
+import com.yohan.neys.view.LatestNewsFragment;
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
@@ -16,22 +16,21 @@ import java.lang.reflect.Type;
 import java.util.ArrayList;
 import java.util.List;
 
-public class APIController implements Callback<APIResponse> {
-    private Fragment view;
+public class LatestNewsController implements Callback<APIResponse> {
+    private LatestNewsFragment view;
     private NewsAPI newsAPI;
     private SharedPreferences sharedPreferences;
     private List<Article> articles;
 
-    public APIController(Fragment view, NewsAPI newsAPI, SharedPreferences sharedPreferences) {
+    public LatestNewsController(LatestNewsFragment view, NewsAPI newsAPI, SharedPreferences sharedPreferences) {
         this.view = view;
         this.newsAPI = newsAPI;
         this.sharedPreferences = sharedPreferences;
         this.articles = getDataFromCache();
     }
 
-    public void start() {
-        String apiKey = "1d5ff6ded54f46b786ce955bd13ddee2";
-        Call<APIResponse> call = newsAPI.loadTopHeadlines(apiKey, "fr");
+    public void startLoadTopHeadlines() {
+        Call<APIResponse> call = newsAPI.loadTopHeadlines(Injection.getApiKey(), Injection.getLanguage());
         call.enqueue(this);
     }
 
@@ -41,9 +40,8 @@ public class APIController implements Callback<APIResponse> {
             APIResponse apiResponse = response.body();
             if (apiResponse.getArticles() != null && apiResponse.getStatus().equals("ok")) {
                 articles = apiResponse.getArticles();
-                System.out.println(articles);
                 storeData(articles);
-                //view.refreshList(articles, true);
+                view.refreshList(articles, false);
             } else {
                 System.out.println("API Call Unsuccessful");
                 Toast.makeText(view.getActivity(), "Sorry, no articles found...", Toast.LENGTH_LONG).show();
@@ -51,7 +49,6 @@ public class APIController implements Callback<APIResponse> {
         } else {
             System.out.println("API Call Unsuccessful");
             List<Article> articles = getDataFromCache();
-            //view.refreshList(articles, false);
         }
     }
 
@@ -65,12 +62,12 @@ public class APIController implements Callback<APIResponse> {
         String listProductString = gson.toJson(products);
         sharedPreferences
                 .edit()
-                .putString("articles_list", listProductString)
+                .putString("articles_latest_list", listProductString)
                 .apply();
     }
 
     public ArrayList<Article> getDataFromCache() {
-        String listArticlesString = sharedPreferences.getString("articles_list", "");
+        String listArticlesString = sharedPreferences.getString("articles_latest_list", "");
         if(!TextUtils.isEmpty(listArticlesString)){
             Type listType = new TypeToken<List<Article>>(){}.getType();
             return new Gson().fromJson(listArticlesString, listType);

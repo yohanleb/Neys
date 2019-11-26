@@ -1,11 +1,9 @@
-package com.yohan.neys.data;
-
-import com.yohan.neys.Injection;
+package com.yohan.neys.controller;
 
 public class TestClass {
     public static void main (String[] args){
         System.out.println("Testing APICall");
-        //APIController controller = new APIController(Injection.getRestApiInstance());
+        //LatestNewsController controller = new LatestNewsController(Injection.getRestApiInstance());
         //controller.start();
     }
 }
