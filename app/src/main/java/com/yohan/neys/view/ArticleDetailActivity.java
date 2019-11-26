@@ -1,10 +1,8 @@
 package com.yohan.neys.view;
 
-import android.graphics.Color;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
-import android.text.Html;
 import android.view.MenuItem;
 import android.widget.ImageView;
 import android.widget.TextView;
@@ -37,7 +35,9 @@ public class ArticleDetailActivity extends AppCompatActivity {
         articleDate.setText(article.getPublishedAtFormatted());
 
         TextView articleContent = findViewById(R.id.article_detail_content);
-        articleContent.setText(String.format("%s...", article.getContent().split("…")[0]));
+        String content = article.getContent();
+        if (content == null) content = article.getDescription();
+        articleContent.setText(String.format("%s...", content.split("…")[0]));
 
         String more = String.format("Plus sur : %s", article.getUrl());
         TextView articleUrl = findViewById(R.id.article_detail_url);
