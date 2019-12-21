@@ -60,4 +60,18 @@ public class Article implements Serializable {
     public String getContent() {
         return content;
     }
+
+    public boolean equals(Object obj) {
+        if (obj == this) {
+            return true;
+        }
+        if (obj == null || obj.getClass() != this.getClass()) {
+            return false;
+        }
+
+        Article article = (Article) obj;
+        return title.equals(article.title)
+                && description.equals(article.description)
+                && content.equals(article.content);
+    }
 }
