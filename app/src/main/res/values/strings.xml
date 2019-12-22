@@ -6,6 +6,6 @@
     <string name="bottom_navigation_menu_latest">Latest</string>
     <string name="bottom_navigation_menu_search">Search</string>
     <string name="bottom_navigation_menu_liked">Liked</string>
-    <string name="search">Search</string>
+    <string name="search">Search for topics, people…</string>
     <string name="no_liked_articles">No liked articles yet...</string>
 </resources>

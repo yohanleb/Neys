@@ -6,6 +6,7 @@ import android.support.v4.app.FragmentTransaction;
 import android.support.v7.app.ActionBar;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.text.Html;
 import com.yohan.neys.R;
 
 public class MainActivity extends AppCompatActivity {
@@ -18,7 +19,8 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
 
         toolbar = getSupportActionBar();
-        toolbar.setTitle("Latest Headlines");
+        // FIXME: Hack to change color of Action Bar title
+        toolbar.setTitle(Html.fromHtml("<font color='#000000'>Latest Headlines</font>"));
 
         bottomNavigationView = findViewById(R.id.bottom_navigation);
 
@@ -35,15 +37,18 @@ public class MainActivity extends AppCompatActivity {
         switch (integer) {
             case R.id.action_latest:
                 loadFragment(new LatestNewsFragment());
-                toolbar.setTitle("Latest Headlines");
+                // FIXME: Hack to change color of Action Bar title
+                toolbar.setTitle(Html.fromHtml("<font color='#000000'>Latest Headlines</font>"));
                 break;
             case R.id.action_search:
                 loadFragment(new SearchNewsFragment());
-                toolbar.setTitle("Search News");
+                // FIXME: Hack to change color of Action Bar title
+                toolbar.setTitle(Html.fromHtml("<font color='#000000'>Search News</font>"));
                 break;
             case R.id.action_like:
                 loadFragment(new LikedNewsFragment());
-                toolbar.setTitle("Liked News");
+                // FIXME: Hack to change color of Action Bar title
+                toolbar.setTitle(Html.fromHtml("<font color='#000000'>Liked News</font>"));
                 break;
         }
         return true;

@@ -70,8 +70,6 @@ public class Article implements Serializable {
         }
 
         Article article = (Article) obj;
-        return title.equals(article.title)
-                && description.equals(article.description)
-                && content.equals(article.content);
+        return title.equals(article.title);
     }
 }
