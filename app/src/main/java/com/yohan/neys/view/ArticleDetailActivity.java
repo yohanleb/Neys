@@ -1,10 +1,15 @@
 package com.yohan.neys.view;
 
 import android.content.Context;
+import android.graphics.PorterDuff;
+import android.graphics.drawable.Drawable;
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
+import android.support.v4.content.ContextCompat;
+import android.support.v7.app.ActionBar;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
+import android.text.Html;
 import android.view.MenuItem;
 import android.widget.ImageView;
 import android.widget.TextView;
@@ -20,7 +25,15 @@ public class ArticleDetailActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.article_detail);
-        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+
+        ActionBar toolbar = getSupportActionBar();
+        toolbar.setDisplayHomeAsUpEnabled(true);
+        // FIXME: Hack to change color of Action Bar title
+        toolbar.setTitle(Html.fromHtml("<font color='#000000'>Article</font>"));
+        final Drawable upArrow =  ContextCompat.getDrawable(this, R.drawable.abc_ic_ab_back_material);
+        upArrow.setColorFilter(ContextCompat.getColor(this, R.color.textColor), PorterDuff.Mode.SRC_ATOP);
+        this.getSupportActionBar().setHomeAsUpIndicator(upArrow);
+
         this.overridePendingTransition(R.anim.slide_in_right,
                 R.anim.slide_out_left);
 
@@ -36,7 +49,9 @@ public class ArticleDetailActivity extends AppCompatActivity {
         this.changeHeartIcon(controller, article);
 
         ImageView articleImageView = findViewById(R.id.article_detail_image);
-        Picasso.get().load(article.getUrlToImage()).into(articleImageView);
+        if (article.getUrlToImage() != null && !article.getUrlToImage().equals("")) {
+            Picasso.get().load(article.getUrlToImage()).into(articleImageView);
+        }
 
         Toolbar articleSource = findViewById(R.id.toolbar);
         articleSource.setTitle(article.getSource().getName());

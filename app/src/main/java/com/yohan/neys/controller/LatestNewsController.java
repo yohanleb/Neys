@@ -30,7 +30,7 @@ public class LatestNewsController implements Callback<APIResponse> {
     }
 
     public void startLoadTopHeadlines() {
-        Call<APIResponse> call = newsAPI.loadTopHeadlines(Injection.getApiKey(), Injection.getLanguage());
+        Call<APIResponse> call = newsAPI.loadTopHeadlines(Injection.getApiKey(), Injection.getLanguage(), 10);
         call.enqueue(this);
     }
 

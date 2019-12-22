@@ -59,7 +59,9 @@ public class ArticlesAdapter extends
 
         // Set item views based on your views and data model
         ImageView imageView = viewHolder.articleImageView;
-        Picasso.get().load(article.getUrlToImage()).into(imageView);
+        if (article.getUrlToImage() != null && !article.getUrlToImage().equals("")) {
+            Picasso.get().load(article.getUrlToImage()).resize(500,500).centerCrop().into(imageView);
+        }
 
         TextView textView = viewHolder.articleTitleTextView;
         textView.setText(article.getTitle());
