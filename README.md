@@ -35,7 +35,7 @@ The first screen is a loading screen with the Neys logo.
 ### Latest Headlines
 <img src="img/top_headlines.jpeg" width="250" height="" />
 
-You can view the top headlines in the main screen.
+You can view the latest headlines in the main screen.
 
 ### Read an article
 <img src="img/article_detail.jpeg" width="250" height=""/>
