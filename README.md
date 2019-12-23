@@ -60,9 +60,6 @@ All your liked articles are stored in this view.
 ### Animations
 There are animations between two views.
 
-## Warning
-The data showed belongs to News API, the images or the names can be incorrect.
-
 ## Used librairies
 [Gson](https://github.com/google/gson)
 
