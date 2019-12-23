@@ -32,7 +32,7 @@ Neys is an Android app who uses [News API](https://newsapi.org/)
 
 The first screen is a loading screen with the Neys logo.
 
-### Top Headlines
+### Latest Headlines
 <img src="img/top_headlines.jpeg" width="250" height="" />
 
 You can view the top headlines in the main screen.
@@ -53,8 +53,7 @@ You can also like an article by clicking on the heart.
 You can search articles by typing some words in the search bar.
 
 ### Like an article
-<img src="img/likes1.jpeg" width="250" height="" />
-<img src="img/likes2.jpeg" width="250" height="" />
+<img src="img/likes1.jpeg" width="250" height="" /> <img src="img/likes2.jpeg" width="250" height="" />
 
 All your liked articles are stored in this view.
 
